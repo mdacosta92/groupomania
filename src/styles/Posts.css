@@ -1,0 +1,104 @@
+#postsGallery {
+    display: flex;
+    flex-direction: row; 
+    height: 550px;
+    margin: 30px;
+    margin-bottom: 0;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+.galleryColumn {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.galleryThumb {
+    display: flex;
+    flex-direction: column;
+    width:20%;
+    flex-wrap: wrap;
+}
+
+.newPost {
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.postCaption{
+    color: black;
+    font-weight: 700;
+    padding-bottom: 20px;
+    width: 100%;
+    
+    
+}
+
+.like {
+    display: flex;
+    justify-content: flex-end;
+height: 50px;
+}
+
+.btn-pink {
+    width: 50px;
+    background-color:transparent;
+    border: none;
+    transition: transform .5s ease-in-out;
+}
+
+.btn-red {
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    transition: transform .5s ease-in-out;
+}
+
+.btn-pink:hover {
+    color: pink;
+    transform: scale(1.5);
+    width: 50px;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-red:hover {
+    transform: scale(1.5);
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    color: red;
+}
+
+.postModification {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.modify {
+    all: unset; 
+    margin-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #4E5166;
+    border-radius: 5px;
+}
+
+.modify:hover {
+    border: 2px solid #FFD7D7;
+    color: #FFD7D7;
+}
+.postDescription {
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+ }

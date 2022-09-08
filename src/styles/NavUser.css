@@ -1,0 +1,30 @@
+.lmj-userMenu {
+	margin-top: 0;
+    justify-content: center;
+    width: 100%;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.toPost {
+    font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        margin: 0;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        color: #FFD7D7;
+        border: 10px, solid white;
+    }
+
+    .toPost:hover {
+        color: #4E5166;
+        background-color: #FFD7D7;
+        border: 10px, solid white;
+    }
+
+    a {
+        text-decoration: none;
+    }
