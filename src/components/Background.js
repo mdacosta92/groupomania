@@ -1,4 +1,4 @@
-import background from '../assets/background2.jpg';
+import background from '../assets/background22.jpg';
 import '../styles/Background.css';
 
 function Background() {
