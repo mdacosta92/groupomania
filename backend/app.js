@@ -12,8 +12,7 @@ const postRoute = require('./routes/post');
 dotenv.config();
 
 // Connect to DB
-
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true }, () =>
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
   console.log('connected To DB')
 );
 
