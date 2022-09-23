@@ -2,8 +2,11 @@ import '../styles/Posts.css';
 import newPost from '../assets/newPost.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+import { API_URL } from '../config/config';
 
 function Posts() {
+  axios.get(API_URL + '/posts').then(console.log);
   return (
     <div id="postsGallery">
       <div className="gallery">

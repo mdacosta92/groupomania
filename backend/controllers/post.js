@@ -95,6 +95,7 @@ exports.deletePost = (req, res, next) => {
 };
 
 exports.getAllPosts = (req, res, next) => {
+  console.log('toto');
   Post.find()
     .then((posts) => {
       res.status(200).json(posts);
