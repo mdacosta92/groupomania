@@ -1,16 +1,21 @@
-import '../styles/App.css';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 function Menu() {
-  return (
-    <div className="lmj-nofold">
-      <div className="lmj-menu">
-        <Link className="lmj.userMenu" to="/posts">
-          <p className="toPost">Créer un post</p>
-        </Link>
-      </div>
-    </div>
-  );
+    return (
+        <div className="lmj-nofold">
+            <div className="lmj-menu">
+                <ul className="lmj-menu">
+                    <li className="menu">
+                        <Link to={'register'}>S'INSCRIRE</Link>
+                    </li>
+                    <li className="menu">
+                        <Link to={'login'}>SE CONNECTER</Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    );
 }
 
-export { Menu };
+export {Menu};

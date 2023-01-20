@@ -1,99 +1,37 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
-import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
-import { NavRegister } from '../components/NavRegister';
-
-import thumb from '../assets/thumb.png';
-import thumbSwap from '../assets/thumbSwap.png';
-import SignupManager from '../manager/SignupManager';
-
-import AbstractManager from '../manager/AbstractManager';
+import React from 'react';
+import thumb from "../assets/thumb.png";
+import thumbSwap from "../assets/thumbSwap.png";
+import {Link} from "react-router-dom";
 
 function Register() {
-  const navigate = useNavigate();
-  const [newUser, setUser] = useState({
-    email: '',
-    password: '',
-  });
+    return (
+        <form id="register">
+            <div className="lmj-unfold">
+                <p>Merci de renseigner votre email employé et votre mot de passe</p>
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+                <input
+                    type="text"
+                    className="my_input"
+                    placeholder="email"
+                    required
+                />
 
-    setUser((prevInput) => {
-      return {
-        ...prevInput,
-        [name]: value,
-      };
-    });
-  }
+                <input
+                    type="text"
+                    className="my_input"
+                    placeholder="Mot de Passe"
+                    required
+                />
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    try {
-      const response = await SignupManager.signup(newUser);
-      localStorage.setItem('userId', response.data.userId);
-      localStorage.setItem('token');
-      AbstractManager.token = response.data.token;
-
-      alert('Creation Successful');
-
-      navigate('/login');
-    } catch (e) {
-      if (e instanceof AxiosError) {
-        alert('Bad Credentials');
-        return;
-      }
-
-      throw e;
-    }
-  }
-
-  return (
-    <div id="header">
-      <Header></Header>
-      <NavRegister></NavRegister>
-      <form id="login" onSubmit={handleSubmit}>
-        <div className="lmj-unfold">
-          <p>
-            Pour la création d'un compte, merci de renseigner votre email
-            employé et votre mot de passe
-          </p>
-
-          <input
-            onChange={handleChange}
-            name="email"
-            value={newUser.email}
-            autoComplete="off"
-            className="my_input"
-            placeholder="email"
-            required
-          />
-
-          <input
-            type="password"
-            onChange={handleChange}
-            name="password"
-            value={newUser.password}
-            autoComplete="off"
-            className="my_input"
-            placeholder="Mot de Passe"
-            required
-          />
-
-          <button type="submit" className="button">
-            <img src={thumb} alt="thumb" className="thumb" />
-            <img src={thumbSwap} alt="thumb" className="thumbSwap" />
-          </button>
-        </div>
-        <div id="Footer">
-          <Footer></Footer>
-        </div>
-      </form>
-    </div>
-  );
+                <button type="submit" className="button">
+                    <Link to="/user">
+                        <img src={thumb} alt="thumb" className="thumb"/>
+                        <img src={thumbSwap} alt="thumb" className="thumbSwap"/>
+                    </Link>
+                </button>
+            </div>
+        </form>
+    );
 }
 
 export default Register;
