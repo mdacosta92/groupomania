@@ -1,11 +1,14 @@
 import logo from '../assets/logo.png';
-import '../styles/Header.css';
+import '../styles/App.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <div id="root">
       <div className="lmj-banner">
-        <img src={logo} alt="groupomania" className="lmj-logo" />
+        <Link className="home" to="/">
+          <img src={logo} alt="groupomania" className="lmj-logo" />
+        </Link>
       </div>
     </div>
   );

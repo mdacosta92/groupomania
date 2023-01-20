@@ -1,18 +1,14 @@
+import {Posts} from '../components/Posts';
 import {Header} from '../components/Header';
-import {Footer} from '../components/Footer';
-import {NavUser} from '../components/NavUser';
-import {Posts} from '../components/Posts'
 
 function User() {
-    
-    return(
+
+    return (
         <div>
-            <Header />
-            <Posts />
-            <NavUser />
-            <Footer />
+            <Header/>
+            <Posts/>
         </div>
-    )
+    );
 }
 
 export default User;
