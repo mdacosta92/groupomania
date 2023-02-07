@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import AbstractManager from '../manager/AbstractManager';
+import PostManager from '../manager/PostManager';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Footer } from '../components/Footer';
@@ -30,89 +31,58 @@ function OnePost() {
       .get('http://localhost:5000/api/posts/' + params.id, config)
       .then((response) => {
         setPost(response.data);
-        console.log(response.data);
       });
   }, []);
 
-  const [like, setLike] = useState(0);
-  const [dislike, setDislike] = useState(0);
-
-  const usersLiked = post.usersLiked;
-  const usersDisliked = post.usersDisliked;
-
   const currentId = localStorage.getItem('userId');
 
-  function likef() {
-    if (
-      like >= 0 &&
-      !usersDisliked.includes(currentId) &&
-      !usersLiked.includes(currentId)
-    ) {
-      post.likes = post.likes + 1;
-      usersLiked.push();
-      setLike();
-    } else if (like === 0 && usersLiked.includes(currentId)) {
-      post.likes = post.likes - 1;
-      usersLiked.shift();
-      setLike();
-    }
-    likePost();
-  }
-
-  const likePost = () => {
-    const liked = {
-      like: post.likes,
-    };
-    axios
-      .post(
-        'http://localhost:5000/api/posts/like/' + params.id,
-        liked,
-        config,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      )
-      .then((response) => {});
+  const hasLiked = () => {
+    return post.usersLiked.includes(currentId);
   };
 
-  function dislikef() {
-    if (
-      dislike >= 0 &&
-      !usersDisliked.includes(currentId) &&
-      !usersLiked.includes(currentId)
-    ) {
-      post.dislikes = post.dislikes + 1;
-      usersDisliked.push();
-      setDislike(1);
-    } else if (dislike === 0 && usersDisliked.includes(currentId)) {
-      post.dislikes = post.dislikes - 1;
-      usersDisliked.shift();
-      setDislike(0);
-    }
-    dislikePost();
-  }
+  const hasDisliked = () => {
+    return post.usersDisliked.includes(currentId);
+  };
+  const like = (e) => {
+    e.preventDefault();
 
-  const dislikePost = () => {
-    const disliked = {
-      dislike: post.dislikes,
-    };
-    axios
-      .post(
-        'http://localhost:5000/api/posts/like/' + params.id,
-        disliked,
-        config,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      )
-      .then((response) => {
-        setLike(response.data);
-        console.log(response.data);
-      });
+    PostManager.likeModify(params.id, hasLiked() ? 0 : 1).then(() => {
+      if (hasLiked()) {
+        setPost({
+          ...post,
+          likes: post.likes - 1,
+          usersLiked: post.usersLiked.filter((user) => user !== currentId),
+        });
+      } else {
+        setPost({
+          ...post,
+          likes: post.likes + 1,
+          usersLiked: [...post.usersLiked, currentId],
+        });
+      }
+    });
+  };
+
+  const dislike = (e) => {
+    e.preventDefault();
+
+    PostManager.likeModify(params.id, hasDisliked() ? 0 : -1).then(() => {
+      if (hasDisliked()) {
+        setPost({
+          ...post,
+          dislikes: post.dislikes - 1,
+          usersDisliked: post.usersDisliked.filter(
+            (user) => user !== currentId
+          ),
+        });
+      } else {
+        setPost({
+          ...post,
+          dislikes: post.dislikes + 1,
+          usersDisliked: [...post.usersDisliked, currentId],
+        });
+      }
+    });
   };
 
   return (
@@ -135,27 +105,21 @@ function OnePost() {
 
           <div className="like">
             <button
-              id="btn-pink"
-              onClick={likef}
-              className={[
-                like === post.likes ? 'btn-pink' : null,
-                'btn-pink',
-              ].join()}
+              onClick={like}
+              className={[hasLiked() ? 'btn-pink' : null]}
+              disabled={hasDisliked()}
             >
-              {''}
+              {' '}
               <FontAwesomeIcon icon={faHeart} /> {post.likes}
             </button>
 
             <button
-              id="btn-red"
-              onClick={dislikef}
-              className={[
-                dislike === post.dislikes ? 'btn-red' : null,
-                'btn-red',
-              ].join()}
+              onClick={dislike}
+              className={[hasDisliked() ? 'btn-pink' : null]}
+              disabled={hasLiked()}
             >
-              {''}
-              <FontAwesomeIcon icon={faHeartBroken} /> {post.dislikes}
+              {' '}
+              <FontAwesomeIcon icon={faHeart} /> {post.dislikes}
             </button>
           </div>
 
