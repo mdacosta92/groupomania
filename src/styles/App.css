@@ -651,11 +651,18 @@ height: 50px;
         background-size: cover;
     }
 
+.imageCreateThumb {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+}
+
     .imageCreateThumb > img {
         width: 80%;
         object-fit: cover;
         height: 700px;
     }
+
     #displayPost {
         display: flex;
         flex-direction: row;
@@ -816,6 +823,11 @@ height: 50px;
         .imageContainer > img {
             width: 90%;
         }
+        .imageCreateThumb > img {
+            width: 75%;
+            object-fit: cover;
+            height: 400px;
+        }
 
         .postInfo {
             width: 90%;
@@ -857,7 +869,12 @@ height: 50px;
         .galleryThumb {
             max-width: 200px;
         }
-        
+        .info {
+            text-align: center;
+        }
+        .infos {
+            text-align: center;
+        }
         .figureInfo {
             max-width: 180px;
             padding-right: 0px;
@@ -883,6 +900,12 @@ height: 50px;
         .imageContainer > img {
             width: 90%; 
         }
+
+    .imageCreateThumb > img {
+        width: 50%;
+        object-fit: cover;
+        height: 200px;
+    }
         .postInfo {
             width: 50%;
         }
