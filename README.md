@@ -21,7 +21,7 @@ npm install
 npm start
 
 ### Frontend
-Depuis le dossier du projet : cd frontend
+Depuis le dossier du projet :
 
 npm install 
 
