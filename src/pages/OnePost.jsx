@@ -119,7 +119,7 @@ function OnePost() {
               disabled={hasLiked()}
             >
               {' '}
-              <FontAwesomeIcon icon={faHeart} /> {post.dislikes}
+              <FontAwesomeIcon icon={faHeartBroken } /> {post.dislikes}
             </button>
           </div>
 
