@@ -11,10 +11,14 @@ Vous aurez besoin de Node et d'installer npm et react sur votre machine.
 
 Clonez le repository.
 
+
 Positionnez-vous dans le dossier du projet puis suivez la procédure suivante via votre terminal :
 
  ### Backend
+ 
 Depuis le dossier du projet : cd backend
+
+Créer un dossier 'images' : mkdir images
 
 npm install
 
